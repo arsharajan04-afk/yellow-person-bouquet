@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff8b5, #ffe680, #fff4a8);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.screen {
+  text-align: center;
+  padding: 25px;
+  width: 100%;
+}
+
+h1 {
+  color: #5b4500;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #6d5700;
+  font-size: 18px;
+}
+
+button {
+  margin-top: 25px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  background: #f5c400;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#bouquetScreen {
+  display: none;
+}
+
+.bouquet {
+  font-size: 85px;
+  animation: appear 2s ease;
+  margin: 15px 0;
+}
+
+.message {
+  font-size: 22px;
+  font-weight: bold;
+  color: #705600;
+  line-height: 1.6;
+}
+
+@keyframes appear {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.heart {
+  position: fixed;
+  font-size: 22px;
+  animation: float 5s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 1;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen" id="openingScreen">
+  <h1>Hey my dear Annachii 🐒🐷❤️</h1>
+  <p>A little something for you…</p>
+  <button onclick="showBouquet()">Open my surprise 🌻</button>
+</div>
+
+<div class="screen" id="bouquetScreen">
+  <div class="bouquet">💐🌻🌼🌷🌻💐</div>
+
+  <div class="message">
+    You are my yellow person. 💛<br>
+    I love you 😘🫂
+  </div>
+</div>
+
+<script>
+function showBouquet() {
+  document.getElementById("openingScreen").style.display = "none";
+  document.getElementById("bouquetScreen").style.display = "block";
+
+  for (let i = 0; i < 15; i++) {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💛";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 3 + "s";
+    document.body.appendChild(heart);
+  }
+}
+</script>
+
+</body>
+</html>
