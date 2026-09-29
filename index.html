@@ -15,371 +15,792 @@ body {
     margin: 0;
     min-height: 100vh;
     overflow: hidden;
-    font-family: Georgia, serif;
-    background: linear-gradient(135deg, #fff5f7, #ffeef2, #fffaf3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #5b3540;
+    background:
+        radial-gradient(circle at 50% 45%, #24151d 0%, #0b080b 45%, #030303 100%);
+    color: white;
+    font-family: Georgia, "Times New Roman", serif;
 }
 
-.screen {
-    text-align: center;
-    width: 100%;
-    padding: 25px;
-}
+/* ---------- OPENING SCREEN ---------- */
 
 .intro {
-    animation: fadeIn 2s ease;
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+
+    background:
+        radial-gradient(circle, #281720 0%, #080609 70%);
+    
+    animation: introFade 1.2s ease 5.5s forwards;
+    pointer-events: auto;
 }
 
 .intro h1 {
-    font-size: clamp(25px, 7vw, 45px);
-    margin-bottom: 15px;
+    font-size: clamp(25px, 7vw, 43px);
+    margin: 0 0 15px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    animation: textAppear 1.5s ease forwards;
 }
 
 .intro p {
-    font-size: clamp(17px, 4vw, 23px);
-    margin: 8px;
+    margin: 0;
+    font-size: clamp(17px, 4.5vw, 23px);
+    color: #e8c9d4;
+    animation: textAppear 1.5s ease .5s both;
 }
 
-button {
-    margin-top: 25px;
-    border: none;
-    border-radius: 30px;
-    padding: 13px 28px;
-    font-size: 17px;
-    background: #e8899d;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 5px 15px #d99aaa;
+.tap {
+    margin-top: 35px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #aaa;
+    animation: pulse 2s infinite 2s;
 }
 
-button:active {
-    transform: scale(.96);
-}
-
-/* Bouquet area */
-
-.bouquet-screen {
-    display: none;
-}
-
-.bouquet {
-    position: relative;
-    width: 330px;
-    height: 470px;
-    margin: auto;
-}
-
-/* paper */
-
-.wrapper {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 260px;
-    height: 180px;
-    background: linear-gradient(135deg, #fffdf8, #f5e7d7);
-    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-    z-index: 2;
-}
-
-.ribbon {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95px;
-    height: 30px;
-    background: #d98b9d;
-    border-radius: 10px;
-    z-index: 8;
-}
-
-.ribbon:before,
-.ribbon:after {
-    content: "";
-    position: absolute;
-    top: 4px;
-    width: 65px;
-    height: 35px;
-    background: #d98b9d;
-}
-
-.ribbon:before {
-    right: 65px;
-    transform: rotate(25deg);
-}
-
-.ribbon:after {
-    left: 65px;
-    transform: rotate(-25deg);
-}
-
-/* stems */
-
-.stem {
-    position: absolute;
-    width: 7px;
-    height: 230px;
-    background: #4f8b55;
-    bottom: 90px;
-    left: 50%;
-    transform-origin: bottom;
-    border-radius: 10px;
-    z-index: 1;
-}
-
-/* leaves */
-
-.leaf {
-    position: absolute;
-    width: 65px;
-    height: 28px;
-    background: #5f9c61;
-    border-radius: 100% 0 100% 0;
-    bottom: 170px;
-    z-index: 3;
-}
-
-/* flowers */
-
-.flower {
-    position: absolute;
-    z-index: 6;
-    opacity: 0;
-    animation: appear 1s ease forwards;
-}
-
-/* ROSE */
-
-.rose {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 50% 50%, #7d1f32 0 10%, transparent 11%),
-        radial-gradient(circle at 30% 40%, #d94d68 0 20%, transparent 21%),
-        radial-gradient(circle at 70% 40%, #c93655 0 22%, transparent 23%),
-        radial-gradient(circle at 35% 70%, #ef7086 0 25%, transparent 26%),
-        radial-gradient(circle at 70% 70%, #d94d68 0 24%, transparent 25%),
-        #b72e49;
-    box-shadow: inset 0 0 12px rgba(80,0,20,.4);
-}
-
-/* TULIP */
-
-.tulip {
-    width: 62px;
-    height: 68px;
-    background: linear-gradient(90deg, #e56b82, #ff9caf, #d94d67);
-    border-radius: 50% 50% 45% 45%;
-    clip-path: polygon(
-        0 0, 20% 28%, 35% 0,
-        50% 30%, 67% 0, 82% 28%,
-        100% 0, 92% 75%, 70% 100%,
-        30% 100%, 8% 75%
-    );
-}
-
-/* LILY */
-
-.lily {
-    width: 85px;
-    height: 85px;
-    background:
-        radial-gradient(circle at center, #d98a9d 0 5%, transparent 6%),
-        radial-gradient(ellipse at center, #fff 0 35%, #fff0f5 36% 60%, transparent 61%);
-    clip-path: polygon(
-        50% 0,
-        62% 30%,
-        100% 20%,
-        72% 50%,
-        100% 80%,
-        60% 68%,
-        50% 100%,
-        40% 68%,
-        0 80%,
-        28% 50%,
-        0 20%,
-        38% 30%
-    );
-}
-
-/* VIOLET */
-
-.violet {
-    width: 58px;
-    height: 58px;
-    background:
-        radial-gradient(circle, #f7dffb 0 10%, transparent 11%),
-        radial-gradient(circle at 50% 10%, #7743a8 0 28%, transparent 29%),
-        radial-gradient(circle at 90% 40%, #8e5bc0 0 28%, transparent 29%),
-        radial-gradient(circle at 70% 90%, #7743a8 0 28%, transparent 29%),
-        radial-gradient(circle at 30% 90%, #8e5bc0 0 28%, transparent 29%),
-        radial-gradient(circle at 10% 40%, #7743a8 0 28%, transparent 29%);
-    border-radius: 50%;
-}
-
-/* small filler flowers */
-
-.filler {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: white;
-    box-shadow:
-        0 -12px 0 -3px white,
-        12px 0 0 -3px white,
-        0 12px 0 -3px white,
-        -12px 0 0 -3px white;
-}
-
-/* positions */
-
-.r1 { left: 130px; bottom: 250px; }
-.r2 { left: 45px; bottom: 220px; transform: scale(.85); }
-.r3 { right: 40px; bottom: 220px; transform: scale(.85); }
-
-.t1 { left: 95px; bottom: 300px; transform: rotate(-12deg); }
-.t2 { right: 90px; bottom: 300px; transform: rotate(12deg); }
-.t3 { left: 135px; bottom: 325px; transform: scale(.85); }
-
-.l1 { left: 120px; bottom: 355px; }
-.l2 { left: 190px; bottom: 340px; transform: scale(.75); }
-
-.v1 { left: 55px; bottom: 290px; }
-.v2 { right: 55px; bottom: 285px; transform: scale(.85); }
-.v3 { left: 160px; bottom: 280px; transform: scale(.7); }
-
-.f1 { left: 35px; bottom: 310px; }
-.f2 { right: 25px; bottom: 330px; }
-.f3 { left: 80px; bottom: 355px; }
-.f4 { right: 80px; bottom: 365px; }
-
-.message {
-    opacity: 0;
-    margin-top: 8px;
-    animation: messageIn 2s ease forwards;
-    animation-delay: 5.5s;
-}
-
-.message h2 {
-    font-size: clamp(22px, 6vw, 32px);
-    margin: 5px;
-}
-
-.message p {
-    font-size: 19px;
-    margin: 8px;
-}
-
-@keyframes appear {
+@keyframes textAppear {
     from {
         opacity: 0;
-        transform: translateY(80px) scale(.5);
+        transform: translateY(20px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes introFade {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .4;
+    }
+}
+
+/* ---------- BOUQUET ---------- */
+
+.bouquet {
+    width: 100%;
+    max-width: 650px;
+    height: 100vh;
+    margin: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------- STEMS ---------- */
+
+.stem {
+    fill: none;
+    stroke: #245b32;
+    stroke-width: 5;
+    stroke-linecap: round;
+
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+
+    animation: growStem 2s ease forwards;
+}
+
+.stem:nth-of-type(1) { animation-delay: 1s; }
+.stem:nth-of-type(2) { animation-delay: 1.2s; }
+.stem:nth-of-type(3) { animation-delay: 1.4s; }
+.stem:nth-of-type(4) { animation-delay: 1.6s; }
+.stem:nth-of-type(5) { animation-delay: 1.8s; }
+.stem:nth-of-type(6) { animation-delay: 2s; }
+.stem:nth-of-type(7) { animation-delay: 2.2s; }
+.stem:nth-of-type(8) { animation-delay: 2.4s; }
+
+@keyframes growStem {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ---------- LEAVES ---------- */
+
+.leaf {
+    fill: #327343;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(0);
+    animation: leafAppear .7s ease forwards;
+}
+
+.leaf:nth-of-type(1) { animation-delay: 2.3s; }
+.leaf:nth-of-type(2) { animation-delay: 2.5s; }
+.leaf:nth-of-type(3) { animation-delay: 2.7s; }
+.leaf:nth-of-type(4) { animation-delay: 2.9s; }
+.leaf:nth-of-type(5) { animation-delay: 3.1s; }
+.leaf:nth-of-type(6) { animation-delay: 3.3s; }
+.leaf:nth-of-type(7) { animation-delay: 3.5s; }
+.leaf:nth-of-type(8) { animation-delay: 3.7s; }
+.leaf:nth-of-type(9) { animation-delay: 3.9s; }
+.leaf:nth-of-type(10) { animation-delay: 4.1s; }
+
+@keyframes leafAppear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ---------- ALL FLOWERS ---------- */
+
+.flower {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(0);
+    animation: bloom 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes bloom {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    65% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ---------- ROSES ---------- */
+
+.rosePetal {
+    fill: #d9364f;
+}
+
+.roseLight {
+    fill: #ef5266;
+}
+
+.roseDark {
+    fill: #a91f38;
+}
+
+/* ---------- TULIPS ---------- */
+
+.tulipPetal {
+    fill: #f2c84b;
+}
+
+.tulipOrange {
+    fill: #f28b3d;
+}
+
+.tulipPink {
+    fill: #e76b8a;
+}
+
+/* ---------- LILIES ---------- */
+
+.lily {
+    fill: #fff8ed;
+}
+
+.lilyPink {
+    fill: #f4d7df;
+}
+
+.lilyCenter {
+    fill: #e6b83d;
+}
+
+/* ---------- VIOLETS ---------- */
+
+.violet {
+    fill: #7950a8;
+}
+
+.violetLight {
+    fill: #9a72c5;
+}
+
+.violetCenter {
+    fill: #f0c84b;
+}
+
+/* ---------- FLOWER TIMINGS ---------- */
+
+.rose1 { animation-delay: 4.2s; }
+.rose2 { animation-delay: 4.6s; }
+.rose3 { animation-delay: 5s; }
+
+.tulip1 { animation-delay: 5.4s; }
+.tulip2 { animation-delay: 5.8s; }
+
+.lily1 { animation-delay: 6.2s; }
+.lily2 { animation-delay: 6.6s; }
+
+.violet1 { animation-delay: 7s; }
+.violet2 { animation-delay: 7.4s; }
+.violet3 { animation-delay: 7.8s; }
+
+/* ---------- FLOWER CENTERS ---------- */
+
+.center {
+    opacity: 0;
+    animation: centerAppear .5s ease forwards;
+    animation-delay: 8s;
+}
+
+@keyframes centerAppear {
     to {
         opacity: 1;
     }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* ---------- WRAP ---------- */
+
+.wrap {
+    fill: #d7b28a;
+    opacity: 0;
+    transform-origin: center;
+    transform-box: fill-box;
+    transform: scaleY(0);
+    animation: wrapAppear 1s ease 8.3s forwards;
 }
 
-@keyframes messageIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes wrapAppear {
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.ribbon {
+    fill: #c94b68;
+    opacity: 0;
+    animation: ribbonAppear .8s ease 9s forwards;
+}
+
+@keyframes ribbonAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ---------- SPARKLES ---------- */
+
+.sparkle {
+    fill: white;
+    opacity: 0;
+    animation: sparkle 3s infinite ease-in-out;
+}
+
+.s1 { animation-delay: 8s; }
+.s2 { animation-delay: 8.7s; }
+.s3 { animation-delay: 9.4s; }
+.s4 { animation-delay: 10.1s; }
+.s5 { animation-delay: 10.8s; }
+
+@keyframes sparkle {
+    0%,100% {
+        opacity: 0;
+        transform: translateY(12px) scale(.5);
+    }
+
+    40% {
+        opacity: .8;
+        transform: translateY(0) scale(1);
+    }
+
+    70% {
+        opacity: .3;
+    }
+}
+
+/* ---------- FINAL MESSAGE ---------- */
+
+.message {
+    position: absolute;
+    left: 50%;
+    bottom: 75px;
+    transform: translateX(-50%) translateY(20px);
+    width: 90%;
+    text-align: center;
+
+    opacity: 0;
+    animation: messageAppear 1.5s ease 9.5s forwards;
+}
+
+.message .yellow {
+    font-size: clamp(20px, 5vw, 29px);
+    color: #f5c94a;
+    text-shadow: 0 0 15px #f5c94a55;
+}
+
+.message .love {
+    margin-top: 10px;
+    font-size: clamp(18px, 4.5vw, 25px);
+    color: #f3dce3;
+}
+
+@keyframes messageAppear {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ---------- REPLAY ---------- */
+
+.replay {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 9px 20px;
+    border: 1px solid #ffffff35;
+    border-radius: 30px;
+
+    background: #ffffff0d;
+    color: #ddd;
+
+    font-size: 13px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    animation: buttonAppear 1s ease 10s forwards;
+}
+
+.replay:hover {
+    background: #ffffff18;
+}
+
+@keyframes buttonAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 500px) {
+
+    .bouquet {
+        height: 100svh;
+    }
+
+    svg {
+        transform: scale(.92);
+    }
+
+    .message {
+        bottom: 70px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="screen intro" id="intro">
+<!-- ================= OPENING ================= -->
 
-    <h1>Hey my dear annachii 🐒🐷..</h1>
+<div class="intro">
 
-    <p>A little something for you… 💐</p>
+    <h1>Hey my dear annachii 🐒🐷</h1>
 
-    <button onclick="startBouquet()">Open your surprise 💌</button>
+    <p>A little something for you… ❤️</p>
+
+    <div class="tap">
+        ✨ MADE WITH LOVE ✨
+    </div>
 
 </div>
 
 
-<div class="screen bouquet-screen" id="bouquetScreen">
+<!-- ================= BOUQUET ================= -->
 
-    <div class="bouquet">
+<div class="bouquet">
 
-        <!-- stems -->
-        <div class="stem" style="transform:rotate(-25deg)"></div>
-        <div class="stem" style="transform:rotate(-12deg)"></div>
-        <div class="stem"></div>
-        <div class="stem" style="transform:rotate(13deg)"></div>
-        <div class="stem" style="transform:rotate(25deg)"></div>
+<svg viewBox="0 0 600 900">
 
-        <!-- leaves -->
-        <div class="leaf" style="left:30px; transform:rotate(-35deg)"></div>
-        <div class="leaf" style="left:225px; transform:rotate(35deg)"></div>
-        <div class="leaf" style="left:75px; bottom:135px; transform:rotate(-20deg)"></div>
-        <div class="leaf" style="left:185px; bottom:140px; transform:rotate(20deg)"></div>
+<!-- ================= STEMS ================= -->
 
-        <!-- roses -->
-        <div class="flower rose r1" style="animation-delay:.4s"></div>
-        <div class="flower rose r2" style="animation-delay:1.1s"></div>
-        <div class="flower rose r3" style="animation-delay:1.5s"></div>
+<path class="stem"
+d="M300 830 C295 700 300 570 300 360"/>
 
-        <!-- tulips -->
-        <div class="flower tulip t1" style="animation-delay:1.8s"></div>
-        <div class="flower tulip t2" style="animation-delay:2.2s"></div>
-        <div class="flower tulip t3" style="animation-delay:2.5s"></div>
+<path class="stem"
+d="M315 830 C325 700 365 570 385 390"/>
 
-        <!-- lilies -->
-        <div class="flower lily l1" style="animation-delay:2.8s"></div>
-        <div class="flower lily l2" style="animation-delay:3.1s"></div>
+<path class="stem"
+d="M285 830 C270 700 225 570 215 420"/>
 
-        <!-- violets -->
-        <div class="flower violet v1" style="animation-delay:3.5s"></div>
-        <div class="flower violet v2" style="animation-delay:3.8s"></div>
-        <div class="flower violet v3" style="animation-delay:4.1s"></div>
+<path class="stem"
+d="M330 830 C365 710 440 600 470 440"/>
 
-        <!-- filler flowers -->
-        <div class="flower filler f1" style="animation-delay:4.3s"></div>
-        <div class="flower filler f2" style="animation-delay:4.5s"></div>
-        <div class="flower filler f3" style="animation-delay:4.7s"></div>
-        <div class="flower filler f4" style="animation-delay:4.9s"></div>
+<path class="stem"
+d="M275 830 C245 720 170 650 155 500"/>
 
-        <!-- wrapping -->
-        <div class="wrapper"></div>
-        <div class="ribbon"></div>
+<path class="stem"
+d="M320 830 C350 720 500 690 520 550"/>
 
+<path class="stem"
+d="M290 830 C270 720 250 650 270 520"/>
+
+<path class="stem"
+d="M305 830 C300 700 340 620 350 500"/>
+
+
+<!-- ================= LEAVES ================= -->
+
+<ellipse class="leaf"
+cx="265" cy="700" rx="12" ry="48"
+transform="rotate(-55 265 700)"/>
+
+<ellipse class="leaf"
+cx="345" cy="680" rx="12" ry="48"
+transform="rotate(55 345 680)"/>
+
+<ellipse class="leaf"
+cx="225" cy="620" rx="11" ry="45"
+transform="rotate(-65 225 620)"/>
+
+<ellipse class="leaf"
+cx="390" cy="620" rx="11" ry="45"
+transform="rotate(55 390 620)"/>
+
+<ellipse class="leaf"
+cx="195" cy="700" rx="11" ry="44"
+transform="rotate(-65 195 700)"/>
+
+<ellipse class="leaf"
+cx="445" cy="700" rx="11" ry="45"
+transform="rotate(65 445 700)"/>
+
+<ellipse class="leaf"
+cx="245" cy="560" rx="10" ry="40"
+transform="rotate(-70 245 560)"/>
+
+<ellipse class="leaf"
+cx="415" cy="540" rx="10" ry="42"
+transform="rotate(60 415 540)"/>
+
+<ellipse class="leaf"
+cx="170" cy="620" rx="10" ry="40"
+transform="rotate(-55 170 620)"/>
+
+<ellipse class="leaf"
+cx="485" cy="650" rx="10" ry="42"
+transform="rotate(60 485 650)"/>
+
+
+<!-- ================================================= -->
+<!-- ================= ROSE 1 ======================== -->
+<!-- ================================================= -->
+
+<g class="flower rose1"
+transform="translate(300 365)">
+
+    <circle class="rosePetal" cx="0" cy="-28" r="35"/>
+    <circle class="rosePetal" cx="28" cy="-5" r="35"/>
+    <circle class="rosePetal" cx="18" cy="27" r="35"/>
+    <circle class="rosePetal" cx="-18" cy="27" r="35"/>
+    <circle class="rosePetal" cx="-28" cy="-5" r="35"/>
+
+    <circle class="roseLight" cx="0" cy="-18" r="23"/>
+    <circle class="roseDark" cx="0" cy="0" r="15"/>
+    <circle fill="#f5c84b" cx="0" cy="0" r="6"/>
+
+</g>
+
+
+<!-- ================= ROSE 2 ======================== -->
+
+<g class="flower rose2"
+transform="translate(385 395) scale(.9)">
+
+    <circle class="rosePetal" cx="0" cy="-28" r="34"/>
+    <circle class="rosePetal" cx="28" cy="-5" r="34"/>
+    <circle class="rosePetal" cx="18" cy="27" r="34"/>
+    <circle class="rosePetal" cx="-18" cy="27" r="34"/>
+    <circle class="rosePetal" cx="-28" cy="-5" r="34"/>
+
+    <circle class="roseLight" cx="0" cy="-18" r="22"/>
+    <circle class="roseDark" cx="0" cy="0" r="14"/>
+    <circle fill="#f5c84b" cx="0" cy="0" r="6"/>
+
+</g>
+
+
+<!-- ================= ROSE 3 ======================== -->
+
+<g class="flower rose3"
+transform="translate(220 430) scale(.82)">
+
+    <circle class="rosePetal" cx="0" cy="-27" r="33"/>
+    <circle class="rosePetal" cx="27" cy="-5" r="33"/>
+    <circle class="rosePetal" cx="17" cy="26" r="33"/>
+    <circle class="rosePetal" cx="-17" cy="26" r="33"/>
+    <circle class="rosePetal" cx="-27" cy="-5" r="33"/>
+
+    <circle class="roseLight" cx="0" cy="-17" r="21"/>
+    <circle class="roseDark" cx="0" cy="0" r="14"/>
+    <circle fill="#f5c84b" cx="0" cy="0" r="6"/>
+
+</g>
+
+
+<!-- ================================================= -->
+<!-- ================= TULIP 1 ======================= -->
+<!-- ================================================= -->
+
+<g class="flower tulip1"
+transform="translate(270 505)">
+
+    <path class="tulipPetal"
+    d="M-42 -45
+       C-45 -5 -35 30 0 40
+       C35 30 45 -5 42 -45
+       C25 -20 12 -12 0 -45
+       C-12 -12 -25 -20 -42 -45Z"/>
+
+    <path class="tulipOrange"
+    d="M-42 -45 C-25 -20 -12 -12 0 -45
+       C12 -12 25 -20 42 -45
+       C30 -5 15 12 0 15
+       C-15 12 -30 -5 -42 -45Z"/>
+
+</g>
+
+
+<!-- ================= TULIP 2 ======================== -->
+
+<g class="flower tulip2"
+transform="translate(450 455) scale(.85)">
+
+    <path class="tulipPink"
+    d="M-42 -45
+       C-45 -5 -35 30 0 40
+       C35 30 45 -5 42 -45
+       C25 -20 12 -12 0 -45
+       C-12 -12 -25 -20 -42 -45Z"/>
+
+</g>
+
+
+<!-- ================================================= -->
+<!-- ================= LILY 1 ========================= -->
+<!-- ================================================= -->
+
+<g class="flower lily1"
+transform="translate(350 270)">
+
+    <ellipse class="lily" cx="0" cy="-42" rx="19" ry="50"/>
+    <ellipse class="lily" cx="0" cy="42" rx="19" ry="50"/>
+    <ellipse class="lily" cx="-42" cy="0" rx="50" ry="19"/>
+    <ellipse class="lily" cx="42" cy="0" rx="50" ry="19"/>
+
+    <ellipse class="lilyPink"
+    cx="-27" cy="-27"
+    rx="17" ry="40"
+    transform="rotate(-45)"/>
+
+    <ellipse class="lilyPink"
+    cx="27" cy="-27"
+    rx="17" ry="40"
+    transform="rotate(45)"/>
+
+    <circle class="lilyCenter" cx="0" cy="0" r="9"/>
+
+</g>
+
+
+<!-- ================= LILY 2 ========================= -->
+
+<g class="flower lily2"
+transform="translate(475 350) scale(.75)">
+
+    <ellipse class="lily" cx="0" cy="-42" rx="18" ry="48"/>
+    <ellipse class="lily" cx="0" cy="42" rx="18" ry="48"/>
+    <ellipse class="lily" cx="-42" cy="0" rx="48" ry="18"/>
+    <ellipse class="lily" cx="42" cy="0" rx="48" ry="18"/>
+
+    <ellipse class="lilyPink"
+    cx="-27" cy="-27"
+    rx="16" ry="38"
+    transform="rotate(-45)"/>
+
+    <ellipse class="lilyPink"
+    cx="27" cy="-27"
+    rx="16" ry="38"
+    transform="rotate(45)"/>
+
+    <circle class="lilyCenter" cx="0" cy="0" r="8"/>
+
+</g>
+
+
+<!-- ================================================= -->
+<!-- ================= VIOLET 1 ======================= -->
+<!-- ================================================= -->
+
+<g class="flower violet1"
+transform="translate(165 465) scale(.75)">
+
+    <circle class="violet" cx="0" cy="-25" r="27"/>
+    <circle class="violet" cx="24" cy="-5" r="27"/>
+    <circle class="violet" cx="15" cy="22" r="27"/>
+    <circle class="violet" cx="-15" cy="22" r="27"/>
+    <circle class="violet" cx="-24" cy="-5" r="27"/>
+
+    <circle class="violetCenter" cx="0" cy="0" r="9"/>
+
+</g>
+
+
+<!-- ================= VIOLET 2 ======================= -->
+
+<g class="flower violet2"
+transform="translate(515 510) scale(.68)">
+
+    <circle class="violetLight" cx="0" cy="-25" r="27"/>
+    <circle class="violetLight" cx="24" cy="-5" r="27"/>
+    <circle class="violetLight" cx="15" cy="22" r="27"/>
+    <circle class="violetLight" cx="-15" cy="22" r="27"/>
+    <circle class="violetLight" cx="-24" cy="-5" r="27"/>
+
+    <circle class="violetCenter" cx="0" cy="0" r="9"/>
+
+</g>
+
+
+<!-- ================= VIOLET 3 ======================= -->
+
+<g class="flower violet3"
+transform="translate(390 525) scale(.6)">
+
+    <circle class="violet" cx="0" cy="-25" r="27"/>
+    <circle class="violet" cx="24" cy="-5" r="27"/>
+    <circle class="violet" cx="15" cy="22" r="27"/>
+    <circle class="violet" cx="-15" cy="22" r="27"/>
+    <circle class="violet" cx="-24" cy="-5" r="27"/>
+
+    <circle class="violetCenter" cx="0" cy="0" r="9"/>
+
+</g>
+
+
+<!-- ================= WRAPPING PAPER ================= -->
+
+<path class="wrap"
+d="M210 650
+   L390 650
+   L350 850
+   L250 850 Z"/>
+
+<path class="wrap"
+d="M390 650
+   L470 690
+   L350 850
+   L350 650 Z"/>
+
+
+<!-- ================= RIBBON ================= -->
+
+<path class="ribbon"
+d="M295 745
+   C250 720 220 760 250 790
+   C270 805 295 780 305 755 Z"/>
+
+<path class="ribbon"
+d="M305 755
+   C350 720 380 760 350 790
+   C330 805 305 780 295 755 Z"/>
+
+<circle class="ribbon" cx="300" cy="755" r="15"/>
+
+
+<!-- ================= SPARKLES ================= -->
+
+<circle class="sparkle s1" cx="120" cy="300" r="3"/>
+<circle class="sparkle s2" cx="510" cy="270" r="3"/>
+<circle class="sparkle s3" cx="100" cy="520" r="2"/>
+<circle class="sparkle s4" cx="540" cy="600" r="3"/>
+<circle class="sparkle s5" cx="250" cy="230" r="2"/>
+
+</svg>
+
+
+<!-- ================= FINAL MESSAGE ================= -->
+
+<div class="message">
+
+    <div class="yellow">
+        You are my yellow person.. 💛❤️
     </div>
 
-    <div class="message">
-
-        <h2>You are my yellow person.. 💛</h2>
-
-        <p>I love you 😘🫂</p>
-
+    <div class="love">
+        I love you 😘🫂
     </div>
+
+</div>
+
+
+<button class="replay" onclick="replayBouquet()">
+    🌷 Replay
+</button>
 
 </div>
 
 
 <script>
 
-function startBouquet() {
+function replayBouquet() {
 
-    document.getElementById("intro").style.display = "none";
+    /* Restart the whole page animation */
+    document.querySelector(".intro").style.animation = "none";
 
-    document.getElementById("bouquetScreen").style.display = "block";
+    const elements = document.querySelectorAll(
+        ".stem, .leaf, .flower, .center, .wrap, .ribbon, .sparkle, .message, .replay"
+    );
 
+    elements.forEach(element => {
+        element.style.animation = "none";
+
+        /* Force browser to restart animation */
+        void element.offsetWidth;
+
+        element.style.animation = "";
+    });
+
+    /* Restart opening screen */
+    const intro = document.querySelector(".intro");
+
+    intro.style.visibility = "visible";
+    intro.style.opacity = "1";
+    intro.style.animation = "introFade 1.2s ease 5.5s forwards";
 }
 
 </script>
